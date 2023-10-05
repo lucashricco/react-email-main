@@ -1,3 +1,6 @@
+PROJETO SIMPLES DE FORMULÁRIO DE CONTATO COM DISPARO DE EMAIL, COM USO DO SERVIÇO EMAILJS.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
