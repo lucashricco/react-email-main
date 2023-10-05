@@ -1,12 +1,43 @@
 import { useState } from 'react';
 import './App.css';
+import emailjs from '@emailjs/browser';
 
 function App() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
 
-  function sendEmail(){
+  function sendEmail(e){
+    e.preventDefault();
+
+    if(name === ''){
+      alert("Preencha o campo NOME!");
+    }else if(email === ''){
+      alert("Preencha o campo EMAIL!");
+    }else if(message === ''){
+      alert("Preencha o campo MENSAGEM!");
+    }else{
+
+      const templateParams = {
+        from_name: name,
+        email: email,
+        message: message
+
+      }
+
+      emailjs.send("service_3l7vakb", "template_f8bezuu", templateParams, "diECL297X4iNncpv8")
+      .then((response) => {
+        alert("MENSAGEM ENVIADA COM SUCESSO!")
+        console.log("EMAIL ENVIADO", response.status, response.text);
+        setName('')
+        setEmail('')
+        setMessage('')
+
+      }, (erro) => {
+        console.log("ERRO", erro)
+      })
+    }
+
     
   }
 
@@ -14,7 +45,7 @@ function App() {
     <div className="container">
       <h1 className="title">Contato</h1>
 
-      <form className="form" onSubmit={() => {}}>
+      <form className="form" onSubmit={sendEmail}>
         <input 
           className="input"
           type="text"
@@ -25,7 +56,7 @@ function App() {
         
         <input 
           className="input"
-          type="text"
+          type="email"
           placeholder="Digite seu email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
