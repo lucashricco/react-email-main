@@ -25,7 +25,8 @@ function App() {
 
       }
 
-      emailjs.send("service_3l7vakb", "template_f8bezuu", templateParams, "diECL297X4iNncpv8")
+      //lembar de configurar o serviço do emailjs quando for utilizar, pois desativei o serviço
+      emailjs.send("", "", templateParams, "") //aqui vão as configurações necessárias para o envio do email
       .then((response) => {
         alert("MENSAGEM ENVIADA COM SUCESSO!")
         console.log("EMAIL ENVIADO", response.status, response.text);
